@@ -125,17 +125,14 @@ a {
                 <label for="cidade"></label>
                 <input type="text" id="cidade" name="cidade" placeholder="Cidade:" title="Escreva sua Cidade" required>
             </div>
-
-
-            
             <div class="form-group">
                 <label for="nome"></label>
-                <input type="text" id="nome" name="nome" placeholder="Nome de usuario:" title="Escreva o seu Nome" required>
+                <input type="text" id="nome" name="usuario" placeholder="Nome de usuario:"  required>
             </div>
 
             <div class="form-group">
-            <label>senha: </label>
-            <input type="password" name="password">
+            <label for="senha"></label>
+            <input type="password" id="password" name="password" placeholder="senha:"  required>
             </div>
 
             <div class="form-group">

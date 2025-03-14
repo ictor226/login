@@ -10,25 +10,15 @@
         
         background-color: black;
         color: wheat;
-
-
     }
 </style>
-
-
-
-
-<h1>alterar senha</h1>
-
-<form action="" class="mt-5" method="POST">
-
-        <label class="form-label">Informe o usuario: </label>
-        <input type="text" class="form-control" name="user">
-
-
-        <label class="form-label">Informe e CPF: </label>
-        <input type="text" class="form-coontrol" name="password">
-<br>
-        <a class="btn btn-info mt-3"  href="">verificar</a>
-        <h4>voltar <a href="./index.php">Clique Aqui.</a></h4>
-    </form>
+    <form action="./alterar-user.php" method="post">
+            <h1>Esqueci a Senha</h1>
+            <label>Usuário:</label>
+            <input type="text" name="user" required>
+            <label>CPF:</label>
+            <input type="text" name="cpf" required>
+            <label>Nova Senha:</label>
+            <input type="password" name="nova_senha" required>
+            <input type="submit" value="Alterar Senha">
+        </form>

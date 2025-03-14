@@ -35,7 +35,7 @@
         <input type="password" class="form-coontrol" name="password">
         <div class="d-flex justify-content-around gap-5">
 
-            <input type="submit" class="btn btn-success mt-3">
+            <input type="submit" class="btn btn-success mt-3" href="./loginSucesso.php.php">
 
             <a  class="btn btn-secondary mt-3"  href="./senha-alterar.php">esqueceu a senha?</a>
 
