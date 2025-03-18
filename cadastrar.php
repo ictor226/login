@@ -80,66 +80,97 @@ a {
 
 
 
-<form action="./cad-user.php" method="post">
+<form action="./cad-user.php" method="post" onsubmit="return validarSenhas()">
     <div class="estrutura">
         <div class="login-form">
             <h2 class="titulo-login">Cadastrar-se</h2>
+            
             <div class="form-group">
-                <label for="nome"></label>
-                <input type="text" id="nome" name="nome" placeholder="Nome e Sobrenome:" title="Escreva o seu Nome" required>
+                <label for="nome">Nome e Sobrenome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Nome e Sobrenome:" title="Escreva o seu Nome" required 
+                pattern="[A-Za-zÀ-ÿá-úÁ-Ú ]+" 
+                oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿá-úÁ-Ú ]/g, '')">
             </div>
+
             <div class="form-group">
-                <label for="ano_nascimento"></label>
+                <label for="ano_nascimento">Ano de Nascimento:</label>
                 <input type="number" id="ano_nascimento" name="ano_nascimento" placeholder="Ano de Nascimento:" title="Escreva seu Ano de Nascimento" required>
             </div>
+
             <div class="form-group">
-                <label for="cpf"></label>
+                <label for="cpf">CPF:</label>
                 <input type="text" id="cpf" name="cpf" placeholder="CPF:" title="Escreva seu CPF" required maxlength="14"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');">
             </div>
+
             <div class="form-group">
-                <label for="telefone_1"></label>
+                <label for="telefone_1">Telefone 1:</label>
                 <input type="tel" name="telefone_1" id="telefone_1" pattern="^\(\d{2}\) \d{9}$" placeholder="Telefone 1:" required
                     title="Escreva seu Telefone" maxlength="14"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{2})(\d{0,9})/, '($1) $2');">
             </div>
+
             <div class="form-group">
-                <label for="telefone_2"></label>
+                <label for="telefone_2">Telefone 2:</label>
                 <input type="tel" name="telefone_2" id="telefone_2" pattern="^\(\d{2}\) \d{9}$" placeholder="Telefone 2:"
                     title="Escreva seu Telefone" maxlength="14"
                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{2})(\d{0,9})/, '($1) $2');">
             </div>
+
             <div class="form-group">
-                <label for="logradouro"></label>
+                <label for="logradouro">Logradouro:</label>
                 <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro:" title="Escreva seu Logradouro" required>
             </div>
+
             <div class="form-group">
-                <label for="n_casa"></label>
+                <label for="n_casa">Número da Casa:</label>
                 <input type="number" id="n_casa" name="n_casa" placeholder="Número da Casa:" title="Escreva o Número da Casa" required>
             </div>
+
             <div class="form-group">
-                <label for="bairro"></label>
+                <label for="bairro">Bairro:</label>
                 <input type="text" id="bairro" name="bairro" placeholder="Bairro:" title="Escreva seu Bairro" required>
             </div>
+
             <div class="form-group">
-                <label for="cidade"></label>
+                <label for="cidade">Cidade:</label>
                 <input type="text" id="cidade" name="cidade" placeholder="Cidade:" title="Escreva sua Cidade" required>
             </div>
+
             <div class="form-group">
-                <label for="nome"></label>
-                <input type="text" id="nome" name="usuario" placeholder="Nome de usuario:"  required>
+                <label for="usuario">Nome de usuário:</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Nome de usuario:" required>
             </div>
 
             <div class="form-group">
-            <label for="senha"></label>
-            <input type="password" id="password" name="password" placeholder="senha:"  required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Senha:" required>
             </div>
 
             <div class="form-group">
-                <button type="submit">cadastrar</button>
+                <label for="confirmar_senha">Confirmar Senha:</label>
+                <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Confirmar Senha:" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Cadastrar</button>
             </div>
         </div>
+
         <hr class="my-4">
-        <h4>voltar <a href="./index.php">Clique Aqui.</a></h4>
+        <h4>Voltar <a href="./index.php">Clique Aqui.</a></h4>
     </div>
 </form>
+
+<script>
+    function validarSenhas() {
+        var senha = document.getElementById('password').value;
+        var confirmarSenha = document.getElementById('confirmar_senha').value;
+
+        if (senha !== confirmarSenha) {
+            alert('As senhas não coincidem. Por favor, tente novamente.');
+            return false; // Impede o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+</script>

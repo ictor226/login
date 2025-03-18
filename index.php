@@ -25,23 +25,23 @@
 
 <body>
 
-    <form action="auxlogin.php" class="mt-5" method="POST">
+<form action="auxlogin.php" class="mt-5" method="POST">
 
-        <label class="form-label"> usuario: </label>
-        <input type="text" class="form-control" name="user">
+<label class="form-label">Usuário:</label>
+<input type="text" class="form-control" name="user" required>
 
+<label class="form-label">Senha:</label>
+<input type="password" class="form-control" name="password" required>
 
-        <label class="form-label">senha: </label>
-        <input type="password" class="form-coontrol" name="password">
-        <div class="d-flex justify-content-around gap-5">
+<div class="d-flex justify-content-around gap-5">
+    <input type="submit" class="btn btn-success mt-3">
+    
+    <a class="btn btn-secondary mt-3" href="./senha-alterar.php">Esqueceu a senha?</a>
+</div>
 
-            <input type="submit" class="btn btn-success mt-3" href="./loginSucesso.php.php">
+<a class="btn btn-info mt-3" href="./cadastrar.php">Cadastrar usuário</a>
 
-            <a  class="btn btn-secondary mt-3"  href="./senha-alterar.php">esqueceu a senha?</a>
-
-        </div>
-        <a class="btn btn-info mt-3"  href="./cadastrar.php">cadastrar user</a>
-    </form>
+</form>
 
 
 </body>

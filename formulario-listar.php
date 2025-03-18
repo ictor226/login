@@ -2,29 +2,40 @@
 // Pega o valor do parâmetro 'id' da URL (usando o método GET)
 $id = $_GET['id'];
 
+// Converte o ID para inteiro para garantir que estamos usando um valor numérico
+$id = (int) $id;
+
 // Configura a conexão com o banco de dados MySQL
 $dsn = 'mysql:dbname=db_login;host=127.0.0.1';
 $user = 'root';
 $password = '';
 
-try {//significa tent
+try {
     // Cria uma nova conexão com o banco de dados usando PDO
     $banco = new PDO($dsn, $user, $password);
 
-    // Prepara uma consulta SQL para buscar informações do usuário e da pessoa associada
-    // A consulta usa JOIN para unir as tabelas 'tb_usuario' e 'tb_pessoa' usando o 'id_pessoa'
+    // Prepara a consulta SQL para buscar informações do usuário e da pessoa associada
     $stmt = $banco->prepare('SELECT * FROM tb_usuario JOIN tb_pessoa ON tb_usuario.id_pessoa = tb_pessoa.id WHERE tb_usuario.id = :id');
+
+    // Exibe o ID que será consultado para depuração
+    echo 'ID que está sendo consultado: ' . $id . '<br>'; 
 
     // Executa a consulta, substituindo o placeholder ':id' pelo valor da variável $id
     $stmt->execute(['id' => $id]);
 
     // Pega o resultado da consulta (se houver)
     $usuario = $stmt->fetch();
+
+    // Verifica se o usuário foi encontrado
+    if (!$usuario) {
+        echo 'Não foi possível encontrar o usuário com o ID: ' . $id . '<br>';
+        echo 'Consulta SQL: SELECT * FROM tb_usuario JOIN tb_pessoa ON tb_usuario.id_pessoa = tb_pessoa.id WHERE tb_usuario.id = ' . $id . '<br>';
+    }
+
 } catch (PDOException $e) {
     // Se ocorrer algum erro na conexão com o banco de dados, exibe a mensagem de erro
     echo 'Erro de conexão: ' . $e->getMessage();
 }
-//pedi pro gpt pra ele dar uns comentarios e depois arrumei do meu jeito para que eu entenda
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +46,7 @@ try {//significa tent
     <title>Detalhes do Usuário</title>
     <style>
         body {
-            background-color:rgb(52, 4, 65);
+            background-color: rgb(52, 4, 65);
             color: #f2f2f2;
             padding: 20px;
         }
@@ -58,16 +69,15 @@ try {//significa tent
         a:hover {
             text-decoration: underline;
         }
-        .edit-hr{
+        .edit-hr {
             width: 270px;
             margin-left: -20px;
-            
         }
     </style>
 </head>
 
 <body>
-    <h1> detalhes de usuarios </h1>
+    <h1>Detalhes de Usuários</h1>
 
     <?php if ($usuario): ?>
         <ul class="usuario-info">
@@ -94,12 +104,10 @@ try {//significa tent
             <li><span>Usuário:</span> <?php echo $usuario['usuario']; ?></li>
             <hr class="edit-hr">
         </ul>
+        <a href="loginSucesso.php">Voltar para a tela de listar usuários</a>
     <?php else: ?>
-        <!-- text para falar se a pessoa nao for encontrado -->
         <p>Usuário não encontrado.</p>
     <?php endif; ?>
 
-    <a href="loginSucesso.php">Voltar pra tela de listar user</a>
 </body>
-
 </html>

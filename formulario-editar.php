@@ -105,30 +105,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>editar user</h1>
     <?php if ($usuario): ?>
         <form method="post">
-            <!-- se eu tiver tempo devo colocar um estilizarr -->
-            <label>Senha:</label>
-            <input type="password" name="senha" value="<?php echo $usuario['senha']; ?>" required>
-<hr>
-            <label>Logradouro:</label>
-            <input type="text" name="logradouro" value="<?php echo $usuario['logradouro']; ?>" required>
-            <hr>
-            <label>Número da Casa:</label>
-            <input type="text" name="n_casa" value="<?php echo $usuario['n_casa']; ?>" required>
-            <hr>
-            <label>Bairro:</label>
-            <input type="text" name="bairro" value="<?php echo $usuario['bairro']; ?>" required>
-            <hr>
-            <label>Cidade:</label>
-            <input type="text" name="cidade" value="<?php echo $usuario['cidade']; ?>" required>
-            <hr>
-            <label>Telefone 1:</label>
-            <input type="text" name="telefone_1" value="<?php echo $usuario['telefone_1']; ?>" required>
-            <hr>
-            <label>Telefone 2:</label>
-            <input type="text" name="telefone_2" value="<?php echo $usuario['telefone_2']; ?>">
-            <hr>
-            <input type="submit" value="Salvar Alterações">
-        </form>
+    <!-- se eu tiver tempo devo colocar um estilizarr -->
+    <label>Senha:</label>
+    <input type="password" name="senha" value="<?php echo $usuario['senha']; ?>" required>
+    
+    <hr>
+    
+    <label>Confirmar Senha:</label>
+    <input type="password" name="confirmar_senha" required>
+    <small>Digite novamente a senha para confirmação</small>
+
+    <hr>
+    
+    <label>Logradouro:</label>
+    <input type="text" name="logradouro" value="<?php echo $usuario['logradouro']; ?>" required>
+    <hr>
+    
+    <label>Número da Casa:</label>
+    <input type="text" name="n_casa" value="<?php echo $usuario['n_casa']; ?>" required>
+    <hr>
+    
+    <label>Bairro:</label>
+    <input type="text" name="bairro" value="<?php echo $usuario['bairro']; ?>" required>
+    <hr>
+    
+    <label>Cidade:</label>
+    <input type="text" name="cidade" value="<?php echo $usuario['cidade']; ?>" required>
+    <hr>
+    
+    <label>Telefone 1:</label>
+    <input type="text" name="telefone_1" value="<?php echo $usuario['telefone_1']; ?>" required>
+    <hr>
+    
+    <label>Telefone 2:</label>
+    <input type="text" name="telefone_2" value="<?php echo $usuario['telefone_2']; ?>">
+    <hr>
+    
+    <input type="submit" value="Salvar Alterações">
+</form>
+
+<script>
+    // Validação de "Confirmar Senha" em JavaScript
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const senha = document.querySelector('input[name="senha"]').value;
+        const confirmarSenha = document.querySelector('input[name="confirmar_senha"]').value;
+        
+        if (senha !== confirmarSenha) {
+            alert('As senhas não correspondem. Por favor, verifique.');
+            event.preventDefault(); // Impede o envio do formulário
+        }
+    });
+</script>
+
     <?php else: ?>
         <p>Usuário não encontrado.</p>
     <?php endif; ?>
