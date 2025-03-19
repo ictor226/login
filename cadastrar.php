@@ -6,14 +6,12 @@
     list-style: none;
 }
 body, .estrutura{
-    background: url(../LOGIN/img/1554105.jpg) no-repeat center center;
     height: 100vh;
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: url(../LOGIN/img/1554105.jpg) no-repeat center center ;
 }
 .estrutura h2{
     font-size: 35px;
